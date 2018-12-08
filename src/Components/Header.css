@@ -1,0 +1,30 @@
+header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    margin: 0;
+    border-bottom: 1px black solid;
+}
+
+.Branding{
+    display: flex;
+    justify-content: center;
+    /* position: absolute; */
+
+}
+
+.RightNavButtons{
+    width: 150px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.MenuButton{
+    
+}
+
+.LoginButton{
+    
+}

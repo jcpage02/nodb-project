@@ -1,0 +1,28 @@
+
+.SignInParent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 200px;
+    background-color: rgb(224, 224, 224);
+    margin-top: 20px;
+    flex-wrap: wrap;
+
+}
+
+.SignInButtons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    flex-wrap: wrap;
+    /* margin: 10px; */
+    height: 100px;
+    width: 200px;
+}
+
+button {
+    /* display: flex;
+    justify-content: center;
+    flex-wrap: wrap; */
+}

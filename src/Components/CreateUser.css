@@ -1,0 +1,15 @@
+.Parent{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+    background-color: rgb(224, 224, 224);
+    /* margin-top: -100px; */
+}
+
+.CreateUserInputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
