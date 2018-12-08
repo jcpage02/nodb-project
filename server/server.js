@@ -13,7 +13,7 @@ app.post('/api/validUser', ctrl.validUser)
 
 // app.put('/api/userInfo', ctrl.updateUserInfo)
 
-// app.delete('/api/userInfo', ctrl.deleteUser)
+app.delete('/api/userInfo/:id', ctrl.deleteUser)
 
 
 

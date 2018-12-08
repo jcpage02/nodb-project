@@ -4,10 +4,6 @@ import './MyAccount.css'
 
 export default class MyAccount extends Component {
 
-    handleDelete = () => {
-        
-    }
-
     handleUpdate = () => {
 
     }
@@ -23,7 +19,12 @@ export default class MyAccount extends Component {
                     <div>
                         <div className='FirstNameInput'>
                             First Name:
-                            <input value={this.props.user.userFirstName} type="text" />
+                            {
+                                // this.props.user && this.props.user.length ? 
+                                <input value={this.props.user.userFirstName} type="text" />
+                                // :
+                                // <input type="text" />
+                            }
                         </div>
                         <div className='LastNameInput'>
                             Last Name:
@@ -39,16 +40,16 @@ export default class MyAccount extends Component {
                         </div>
                         <div className='FavoritesMovies'>
                             Favorite Movie Genres:
-                            {this.props.user.userFavMovieGenres} 
+                            {this.props.user.userFavMovieGenres}
                         </div>
                         <div className='FavoritesMusic'>
                             Favorite Music Genres:
-                            {this.props.user.userFavMusicGenres} 
+                            {this.props.user.userFavMusicGenres}
                         </div>
-                        <button onClick={()=>this.handleDelete()} className='DeleteButton'>
+                        <button onClick={() => this.props.deleteFn(this.props.user.id)} className='DeleteButton'>
                             Delete Account
                         </button>
-                        <button onClick={()=>this.handleUpdate()} className='UpdateButton'>
+                        <button onClick={() => this.handleUpdate()} className='UpdateButton'>
                             Update Account
                         </button>
                     </div>

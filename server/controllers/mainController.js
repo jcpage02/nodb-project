@@ -34,15 +34,26 @@ module.exports = {
         console.log(`req: ${username} ${password}`)
         userInfo.filter((user, i) => {
             console.log(`userInfo: ${user.username} ${user.password}`)
-            if ( username === user.username && password === user.password) {
+            if (username === user.username && password === user.password) {
                 validUser.push(user)
-                console.log('I am a valid ', validUser)
+                // console.log('I am a valid ', validUser)
             }
         })
         res.status(200).send(validUser)
+    },
+
+    deleteUser: (req, res) => {
+        // console.log(req.params.id)
+        const index = userInfo.findIndex((user) => {
+            if (user.id === +req.params.id) {
+                return true
+            } else {
+                return false
+            }
+            userInfo.splice(index, 1)
+        })
+        res.status(200).send()
     }
-
-
 
 
 

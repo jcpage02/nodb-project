@@ -35,7 +35,6 @@ export default class CreateUser extends Component {
                     userInfo: res.data
                 })
             })
-            console.log(this.state.userInfo)
     }
 
 

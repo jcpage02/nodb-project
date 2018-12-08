@@ -22,7 +22,7 @@ export default class SignIn extends Component {
         // console.log(` username: ${username} password:${password}`)
         axios.post('/api/validUser', { username, password })
             .then((res) => {
-                // console.log('here is my response',res)
+                console.log(`what is this ${res}`)
                 this.setState({
                     user: res.data[0]
                 })
@@ -30,8 +30,17 @@ export default class SignIn extends Component {
             )
     }
 
+    handleDelete = (idToDelete) => {
+        axios.delete(`/api/userInfo/:${idToDelete}`)
+            .then((res) => {
+            this.setState({
+                user: [],
+            })
+        })
+    }
+
     render() {
-        console.log(this.state)
+        // console.log(this.state)
 
         return (
             <div >
@@ -55,7 +64,7 @@ export default class SignIn extends Component {
                                     Login
                                 </button>
                         }
-                        <MyAccount user={this.state.user}/>
+                        <MyAccount deleteFn={this.handleDelete} user={this.state.user} />
 
                     </div>
                 </div>
