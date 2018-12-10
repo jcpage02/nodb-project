@@ -19,10 +19,8 @@ export default class Login extends Component {
 
     handleLogin = () => {
         let { username, password } = this.state
-        // console.log(` username: ${username} password:${password}`)
         axios.post('/api/validUser', { username, password })
             .then((res) => {
-                console.log(`what is this ${res}`)
                 this.setState({
                     user: res.data[0]
                 })
@@ -39,12 +37,18 @@ export default class Login extends Component {
             })
     }
 
+    handleUserUpdate = (userInfo) => {
+        this.setState({
+            user: userInfo
+        })
+    }
+
     render() {
 
-        const buttonChange = this.state.user.id ?
-            <button>My Account</button>
-            :
-            <button onClick={() => this.handleLogin()}>Login</button>
+        // const buttonChange = this.state.user.id ?
+        //     <button>My Account</button>
+        //     :
+        //     <button onClick={() => this.handleLogin()}>Login</button>
 
         return (
             <div>
@@ -58,8 +62,12 @@ export default class Login extends Component {
                             onChange={(e) => this.handleChange('password', e.target.value)}
                             type="text"
                         />
-                        {buttonChange}
-                        <MyAccount deleteFn={this.handleDelete} user={this.state.user} />
+                        <button onClick={() => this.handleLogin()}>Login</button>
+                        {/* {buttonChange} */}
+                        <MyAccount deleteFn={this.handleDelete} 
+                            user={this.state.user} 
+                            updateUserFn = {this.handleUserUpdate}
+                        />
 
                     </div>
                 </div>

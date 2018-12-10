@@ -30,6 +30,7 @@ export default class CreateUser extends Component {
         const { firstName, lastName, username, password, favMovieGenre, favMusicGenre } = this.state
         axios.post('/api/userInfo', { firstName, lastName, username, password, favMovieGenre, favMusicGenre })
             .then((res) => {
+                console.log(res.data)
                 this.setState({
                     userInfo: res.data
                 })

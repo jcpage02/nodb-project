@@ -1,7 +1,6 @@
-let id = 1
 const userInfo = [
     {
-        id: id,
+        id: 1,
         userFirstName: 'James',
         userLastName: 'Page',
         username: 'james',
@@ -10,6 +9,7 @@ const userInfo = [
         userFavMusicGenres: ['Classical', 'Country', 'Alternative']
     }
 ]
+
 
 module.exports = {
 
@@ -31,9 +31,7 @@ module.exports = {
         const { username, password } = req.body
         const validUser = []
 
-        console.log(`req: ${username} ${password}`)
         userInfo.filter((user, i) => {
-            console.log(`userInfo: ${user.username} ${user.password}`)
             if (username === user.username && password === user.password) {
                 validUser.push(user)
                 // console.log('I am a valid ', validUser)
@@ -53,9 +51,21 @@ module.exports = {
             userInfo.splice(index, 1)
         })
         res.status(200).send()
+    },
+
+    updateUserInfo: (req, res) => {
+        const userID = +req.params.id
+        userInfo.findIndex((user, i) => {
+            if (user.id === +req.params.id) {
+                const updatedUser = { ...user }
+                delete updatedUser[req.body.key]
+                updatedUser[req.body.key] = req.body.value
+                // console.log(updatedUser[req.body.key], req.body)
+                userInfo[i] = updatedUser
+            }
+        })
+        res.status(200).send(userInfo[userID])
     }
-
-
 
 
 }

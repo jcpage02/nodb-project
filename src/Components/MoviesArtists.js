@@ -53,7 +53,6 @@ export default class MoviesArtists extends Component {
         return (
             <div className='MoviesArtists'>
                 <div className='Movies'>
-                    {/* <h4 className='MovieTag'>MOVIES</h4> */}
                     <button className='SwitchButtons'>{leftArrow}</button>
                     <img className='MovieTiles' src={avengers4.movieImage}></img>
                     <img className='MovieTiles' src={theMartian.movieImage}></img>
@@ -61,7 +60,6 @@ export default class MoviesArtists extends Component {
                     <button className='SwitchButtons'>{rightArrow}</button>
                 </div>
                 <div className='Music'>
-                    {/* <h4>ARTISTS</h4> */}
                     <button className='SwitchButtons'>{leftArrow}</button>
                     <img className='ArtistTiles' src={artists[0].artistImage}></img>
                     <img className='ArtistTiles' src={artists[1].artistImage}></img>
