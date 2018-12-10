@@ -1,3 +1,18 @@
+.MainDiv{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(107, 107, 107, .5);
+}
+
+
 
 .SignInParent{
     display: flex;
@@ -8,7 +23,6 @@
     background-color: rgb(224, 224, 224);
     margin-top: 20px;
     flex-wrap: wrap;
-
 }
 
 .SignInButtons{
@@ -16,13 +30,8 @@
     justify-content: space-around;
     align-items: center; 
     flex-wrap: wrap;
-    /* margin: 10px; */
+    margin-top: 50px;
     height: 100px;
-    width: 200px;
+    width: 100px;
 }
 
-button {
-    /* display: flex;
-    justify-content: center;
-    flex-wrap: wrap; */
-}

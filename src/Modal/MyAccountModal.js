@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import './MyAccount.css'
+import './../Components/MyAccount.css'
 
-export default class MyAccount extends Component {
+export default class MyAccountModal extends Component {
 
     state = {
+        user: {}
     }
 
     handleChange = (prop, e) => {
@@ -18,8 +19,25 @@ export default class MyAccount extends Component {
         console.log(this.state)
         axios.put(`/api/userInfo/${idToUpdate}`, this.state)
             .then((res) => {
-                this.props.updateUserFn(res.data)
+                console.log(res.data)
+                this.setState({
+                    user: res.data
+                })
+                // this.props.myAccountUpdate(res.data)
             })
+        this.props.modalToggle()
+    }
+    handleCheckbox = (prop, genre) => {
+        const updateUser = this.props.user
+        if (!updateUser[prop].includes(genre)) {
+            updateUser[prop].push(genre)
+        } else {
+            const index = updateUser[prop].indexOf(genre)
+            updateUser[prop].splice(index, 1)
+        }
+        this.setState({
+            user: updateUser
+        })
     }
 
 
@@ -30,33 +48,33 @@ export default class MyAccount extends Component {
         const lastName = this.props.user.lastName
         const username = this.props.user.username
         const password = this.props.user.password
-        // const favMovieGenres = this.props.user.favMovieGenre
-        // const favMusicGenres = this.props.user.favMusicGenre
 
         const movieGenres = ['Action', 'Comedy', 'Fantasy', 'Horror', 'Romance', 'Sci-fi']
         const musicGenres = ['Alternative', 'Classical', 'Country', 'Indie', 'Pop', 'Rock']
 
         const favMovieGenres = movieGenres.map((genre) => {
+            const included = this.props.user.favMovieGenres.includes(genre)
             return (
                 <div className='GenreColumns'>
                     <span>{genre}</span>
-                    <input onClick={()=>this.handleCheckbox('favMovieGenre', genre)} type="checkbox" />
+                    <input checked={included} onClick={() => this.handleCheckbox('favMovieGenres', genre)} type="checkbox" />
                 </div>
             )
         })
 
         const favMusicGenres = musicGenres.map((genre) => {
+            const included = this.props.user.favMusicGenres.includes(genre)
             return (
                 <div className='GenreColumns'>
                     <span>{genre}</span>
-                    <input onClick={()=>this.handleCheckbox('favMusicGenre', genre)} type="checkbox" />
+                    <input checked={included} onClick={() => this.handleCheckbox('favMusicGenres', genre)} type="checkbox" />
                 </div>
             )
         })
 
         return (
-            <div className='MyAccount'>
-                <div>
+            <div onClick={() => this.props.modalToggle()} className='MainDiv'>
+                <div onClick={(e) => e.stopPropagation()} className='MyAccount'>
                     <div className='InputsButtons'>
                         <div className='Inputs'>
                             First Name:

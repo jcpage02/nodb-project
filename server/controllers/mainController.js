@@ -19,10 +19,10 @@ module.exports = {
     },
 
     createUser: (req, res) => {
-        const { firstName, lastName, username, password, favMovieGenre, favMusicGenre } = req.body
+        const { firstName, lastName, username, password, favMovieGenres, favMusicGenres } = req.body
         id = userInfo.length + 1
-
-        userInfo.push({ id: id, firstName, lastName, username, password, favMovieGenre, favMusicGenre })
+        console.log(req.body)
+        userInfo.push({ id: id, firstName, lastName, username, password, favMovieGenres, favMusicGenres })
         res.status(200).send(userInfo)
     },
 
@@ -39,15 +39,10 @@ module.exports = {
     },
 
     deleteUser: (req, res) => {
-        const index = userInfo.findIndex((user) => {
-            if (user.id === +req.params.id) {
-                return true
-            } else {
-                return false
-            }
-            userInfo.splice(index, 1)
-        })
-        res.status(200).send()
+        const deleteID = req.params.id;
+        userIndex = userInfo.findIndex(user => user.id == deleteID);
+        userInfo.splice(userIndex, 1);
+        res.status(200).send(userInfo);
     },
 
     updateUserInfo: (req, res) => {

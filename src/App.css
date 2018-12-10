@@ -9,4 +9,9 @@
     margin: -100px;
 }
 
+.Editables{
+    display: flex;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+}
 

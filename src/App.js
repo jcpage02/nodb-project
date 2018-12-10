@@ -5,35 +5,22 @@ import CreateUser from './Components/CreateUser';
 import MoviesArtists from './Components/MoviesArtists';
 import Header from './Components/Header'
 import Login from './Components/Login'
+import LoginModal from './Modal/LoginModal'
+import MyAccountModal from './Modal/MyAccountModal'
 
 class App extends Component {
-
-  state = {
-    userLogedIn: [],
-    usernameInput: '',
-    passwordInput: '',
-    media: []
-  }
-
-  // componentDidMount() {
-  //   axios.get('/api/media')
-  //     .then((res) => {
-  //       console.log(res)
-  //       this.setState({
-  //         media: res.data
-  //       })
-  //     }
-  //     )
-  // }
 
   render() {
     return (
       <div className="App">
         <Header />
         <div className='BackgroundImage'></div>
+        {/* <LoginModal /> */}
           <MoviesArtists />
-          <CreateUser />
-          <Login />
+        <div className='Editables'>
+          {/* <CreateUser />
+          <Login /> */}
+        </div>
       </div>
     );
   }

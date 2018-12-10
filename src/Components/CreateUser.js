@@ -22,10 +22,6 @@ export default class CreateUser extends Component {
         })
     }
 
-    handleGenre = () => {
-
-    }
-
     handleCreateUser = () => {
         const { firstName, lastName, username, password, favMovieGenre, favMusicGenre } = this.state
         axios.post('/api/userInfo', { firstName, lastName, username, password, favMovieGenre, favMusicGenre })
@@ -35,6 +31,16 @@ export default class CreateUser extends Component {
                     userInfo: res.data
                 })
             })
+    }
+
+    handleCheckbox = (prop, genre) => {
+        if(!this.state[prop].includes(genre)){
+            this.state[prop].push(genre)
+        }else {
+            const index = this.state[prop].indexOf(genre)
+            this.state[prop].splice(index, 1)
+        }
+        console.log(this.state)
     }
 
 
@@ -47,7 +53,7 @@ export default class CreateUser extends Component {
             return (
                 <div className='GenreColumns'>
                     <span>{genre}</span>
-                    <input value={genre} type="checkbox" />
+                    <input onClick={()=>this.handleCheckbox('favMovieGenre', genre)} type="checkbox" />
                 </div>
             )
         })
@@ -56,7 +62,7 @@ export default class CreateUser extends Component {
             return (
                 <div className='GenreColumns'>
                     <span>{genre}</span>
-                    <input value={genre} type="checkbox" />
+                    <input onClick={()=>this.handleCheckbox('favMusicGenre', genre)} type="checkbox" />
                 </div>
             )
         })

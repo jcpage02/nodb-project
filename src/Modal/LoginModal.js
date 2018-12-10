@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import './Login.css'
-import MyAccount from './MyAccount'
+import MyAccountModal from './../Modal/MyAccountModal'
+import './../Components/Login.css'
 
-export default class Login extends Component {
+export default class LoginModal extends Component {
 
     state = {
         username: '',
         password: '',
-        user: []
+        user: [],
     }
 
     handleChange = (prop, e) => {
@@ -24,6 +24,8 @@ export default class Login extends Component {
                 this.setState({
                     user: res.data[0]
                 })
+                this.props.modalToggle()
+                this.props.validUser(res.data[0])
             })
     }
 
@@ -31,7 +33,7 @@ export default class Login extends Component {
         axios.delete(`/api/userInfo/:${idToDelete}`)
             .then((res) => {
                 this.setState({
-                    user: res.data,
+                    user: [],
                 })
             })
     }
@@ -44,14 +46,10 @@ export default class Login extends Component {
 
     render() {
 
-        // const buttonChange = this.state.user.id ?
-        //     <button>My Account</button>
-        //     :
-        //     <button onClick={() => this.handleLogin()}>Login</button>
 
         return (
-            <div>
-                <div className='SignInParent'>
+            <div onClick={() => this.props.modalToggle()} className='MainDiv'>
+                <div onClick={(e)=>e.stopPropagation()} className='SignInParent'>
                     <div className='SignInButtons'>
                         <input placeholder='Username'
                             onChange={(e) => this.handleChange('username', e.target.value)}
@@ -62,13 +60,9 @@ export default class Login extends Component {
                             type="text"
                         />
                         <button onClick={() => this.handleLogin()}>Login</button>
-                        {/* {buttonChange} */}
-                    </div>
-                    <MyAccount deleteFn={this.handleDelete}
-                        user={this.state.user}
-                        updateUserFn={this.handleUserUpdate}
-                    />
 
+
+                    </div>
                 </div>
             </div>
         )
