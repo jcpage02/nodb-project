@@ -9,9 +9,9 @@ export default class MyAccount extends Component {
 
     handleChange = (prop, e) => {
         this.setState({
-            key:[prop],
-            value: e
+            [prop]: e
         })
+        console.log(this.state)
     }
 
     handleUpdate = (idToUpdate) => {
@@ -19,8 +19,6 @@ export default class MyAccount extends Component {
         axios.put(`/api/userInfo/${idToUpdate}`, this.state)
             .then((res) => {
                 this.props.updateUserFn(res.data)
-                //function prop goes here from Login
-                // res.data needs to be an array to send
             })
     }
 
@@ -32,8 +30,8 @@ export default class MyAccount extends Component {
         const lastName = this.props.user.lastName
         const username = this.props.user.username
         const password = this.props.user.password
-        const movieGenres = this.props.user.userFavMovieGenres
-        const musicGenres = this.props.user.userFavMusicGenres
+        const movieGenres = this.props.user.favMovieGenres
+        const musicGenres = this.props.user.favMusicGenres
 
         return (
             <div>
@@ -42,12 +40,12 @@ export default class MyAccount extends Component {
                         <div className='FirstNameInput'>
                             First Name:
                             <input placeholder={firstName}
-                                onChange={(e) => this.handleChange('userFirstName', e.target.value)} type="text" />
+                                onChange={(e) => this.handleChange('firstName', e.target.value)} type="text" />
                         </div>
                         <div className='LastNameInput'>
                             Last Name:
                             <input placeholder={lastName}
-                                onChange={(e) => this.handleChange('userLastName', e.target.value)} type="text" />
+                                onChange={(e) => this.handleChange('lastName', e.target.value)} type="text" />
                         </div>
                         <div className='UsernameInput'>
                             Username:

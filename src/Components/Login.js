@@ -24,8 +24,7 @@ export default class Login extends Component {
                 this.setState({
                     user: res.data[0]
                 })
-            }
-            )
+            })
     }
 
     handleDelete = (idToDelete) => {
