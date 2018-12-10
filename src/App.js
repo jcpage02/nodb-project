@@ -4,7 +4,7 @@ import './App.css';
 import CreateUser from './Components/CreateUser';
 import MoviesArtists from './Components/MoviesArtists';
 import Header from './Components/Header'
-import SignIn from './Components/SignIn'
+import Login from './Components/Login'
 
 class App extends Component {
 
@@ -12,7 +12,7 @@ class App extends Component {
     userLogedIn: [],
     usernameInput: '',
     passwordInput: '',
-    media: [] 
+    media: []
   }
 
   // componentDidMount() {
@@ -31,10 +31,9 @@ class App extends Component {
       <div className="App">
         <Header />
         <div className='BackgroundImage'></div>
-        <CreateUser />
-        <SignIn />
-        
-        <MoviesArtists />
+          <MoviesArtists />
+          <CreateUser />
+          <Login />
       </div>
     );
   }

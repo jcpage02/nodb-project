@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import './SignIn.css'
+import './Login.css'
 import MyAccount from './MyAccount'
 
-export default class SignIn extends Component {
+export default class Login extends Component {
 
     state = {
         username: '',
@@ -33,17 +33,21 @@ export default class SignIn extends Component {
     handleDelete = (idToDelete) => {
         axios.delete(`/api/userInfo/:${idToDelete}`)
             .then((res) => {
-            this.setState({
-                user: [],
+                this.setState({
+                    user: [],
+                })
             })
-        })
     }
 
     render() {
-        // console.log(this.state)
+
+        const buttonChange = this.state.user.id ?
+            <button>My Account</button>
+            :
+            <button onClick={() => this.handleLogin()}>Login</button>
 
         return (
-            <div >
+            <div>
                 <div className='SignInParent'>
                     <div className='SignInButtons'>
                         <input placeholder='Username'
@@ -54,16 +58,7 @@ export default class SignIn extends Component {
                             onChange={(e) => this.handleChange('password', e.target.value)}
                             type="text"
                         />
-                        {
-                            this.state.user.id ?
-                                <button>
-                                    My Account
-                                </button>
-                                :
-                                <button onClick={() => this.handleLogin()}>
-                                    Login
-                                </button>
-                        }
+                        {buttonChange}
                         <MyAccount deleteFn={this.handleDelete} user={this.state.user} />
 
                     </div>
